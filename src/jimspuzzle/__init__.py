@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 from itertools import chain
 
@@ -68,3 +69,18 @@ def solution(src, dst):
                 continue
             add_move(q, path, move)
 
+
+def main():
+    src, dst = map(int, sys.argv[1:3])
+    path = solution(src, dst)
+
+    for node in path:
+        print_board(gen_board(node))
+        if node is not path[-1]:
+            print("   🡇🡇")
+
+    print(f"{path=}")
+
+
+if __name__ == "__main__":
+    main()
