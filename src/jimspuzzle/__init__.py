@@ -21,3 +21,22 @@ def get_moves(src):
         if 0 <= row < BOARD_SIZE and 0 <= col < BOARD_SIZE:
             allowed_moves.append(row * BOARD_SIZE + col)
     return allowed_moves
+
+
+def gen_board(src):
+    moves = get_moves(src)
+    rows = []
+    for row in range(BOARD_SIZE):
+        output_row = ["▢"] * BOARD_SIZE
+        for col in range(BOARD_SIZE):
+            current = row * BOARD_SIZE + col
+            if src == current:
+                output_row[col] = "▲"
+            if current in moves:
+                output_row[col] = "◉"
+        rows.append(output_row)
+    return rows
+
+
+def print_board(board):
+    print("\n".join("".join(row) for row in board))
