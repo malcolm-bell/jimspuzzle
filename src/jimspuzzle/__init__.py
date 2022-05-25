@@ -40,3 +40,30 @@ def gen_board(src):
 
 def print_board(board):
     print("\n".join("".join(row) for row in board))
+
+
+def add_move(q, path, move):
+    newpath = path[:]
+    newpath.append(move)
+    q.append(newpath)
+
+
+def solution(src, dst):
+    if src == dst:
+        return [src]
+    visited = set()
+    q = deque()
+    q.append([src])
+    while q:
+        path = q.popleft()
+        current = path[-1]
+        visited.add(current)
+        moves = get_moves(current)
+        if dst in moves:
+            path.append(dst)
+            return path
+        for move in moves:
+            if move in visited:
+                continue
+            add_move(q, path, move)
+
