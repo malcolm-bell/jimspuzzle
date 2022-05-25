@@ -1,3 +1,4 @@
+from collections import deque
 from itertools import chain
 
 BOARD_SIZE = 8
